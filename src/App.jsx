@@ -1,12 +1,15 @@
 import './App.css';
 import { React } from 'react';
+import List_expences from './components/list_expences/list_expences';
 function App() {
 
   // jsx
   return (
-    <>
-      empty app
-    </>
+    <div className='container'>
+      
+      <List_expences />
+
+    </div>
   );
 }
 
