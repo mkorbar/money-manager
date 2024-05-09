@@ -1,18 +1,17 @@
 import Entry from "./entry";
+import FormatDate from "../formaters/format_date";
 
 function DailyGroup({expenseData, date}) {
 
-    const expensesByDate = [expenseData]
-
     return (
-        <li className='list-group-item'>
+        <li className='list-group-item p-0'>
             <div className="row">
                 <div>
-                    {date}
+                    <FormatDate date_str={date} />
                 </div>
                 <div>
-                    <ul>
-                    {expensesByDate.map((d,n) => {
+                    <ul className="p-0">
+                    { expenseData.map((d,n) => {
                         return <Entry key={n} expenseData={d} />
                         })}
                     </ul>
