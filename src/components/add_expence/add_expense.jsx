@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { addExpense } from "../../db/firebase";
 
 function AddExpense() {
 
@@ -18,7 +19,7 @@ function AddExpense() {
         setShowSuccessMsg(true)
         e.target.reset();
 
-        console.log(expense);
+        addExpense(expense);
     }
 
     return (
@@ -65,10 +66,10 @@ function AddExpense() {
                         <label htmlFor="type">Type</label>
                     </div>
                     <div className="col-9">
-                        <input type="radio" className="btn-check mx-3" name="type" id="typeExpense" autoComplete="off" />
+                        <input type="radio" className="btn-check mx-3" name="type" value="expense" id="typeExpense" autoComplete="off" />
                         <label className="btn btn-outline-danger me-1" htmlFor="typeExpense">Expense</label>
 
-                        <input type="radio" className="btn-check mx-3" name="type" id="typeIncome" autoComplete="off" />
+                        <input type="radio" className="btn-check mx-3" name="type" value="income" id="typeIncome" autoComplete="off" />
                         <label className="btn btn-outline-primary me-1" htmlFor="typeIncome">Income</label>
                     </div>
                 </div>
