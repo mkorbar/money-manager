@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Alert from 'react-bootstrap/Alert'
 
 function AddExpense() {
 
@@ -18,17 +19,18 @@ function AddExpense() {
         setShowSuccessMsg(true)
         e.target.reset();
 
+        setTimeout(() => {
+            setShowSuccessMsg(false);
+        }, 5000);
+        
         console.log(expense);
     }
 
     return (
         <div>
-            {showSuccessMsg ? (<>
-                <div className="alert alert-success" role="alert">
-                    Data successfuly saved.
-                </div>
-            </>) : ''}
-
+            <Alert variant="success" show={showSuccessMsg} role="alert">
+                Data successfuly saved.
+            </Alert>
 
             <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
