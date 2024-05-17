@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
-    getDatabase, set, ref, onValue,
+    getDatabase, ref, onValue, push,
+    get,
 } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,14 +18,19 @@ const firebaseConfig = {
     appId: '1:828561504456:web:2c1a2c779b78559ea2cdfd',
 };
 
-const DB_NAME = 'tic-tac-toe';
+const DB_NAME = 'expences';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export function writeToDb(state) {
-    set(ref(db, `${DB_NAME}/latest`), state);
+export function saveExpense(expense) {
+    push(ref(db, `${DB_NAME}/`), expense);
+}
+
+export async function getExpenses() {
+    const dataSnapshot = await get(ref(db, `${DB_NAME}/`));
+    return dataSnapshot.toJSON()
 }
 
 
