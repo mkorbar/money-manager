@@ -6,18 +6,26 @@ function List_expences() {
 
     let [data, setData]  = useState([]);
 
-    useEffect(()=>{
-
-      getExpenses().then((data) => {
-        console.log(data);
-        setData(Object.values(data))
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
-
-    }, [])
+    useEffect(() => {
+      getExpenses()
+        .then((data) => {
+          if (data) {
+            setData(Object.values(data));
+            Object.keys(data).forEach(key => {
+              data[key].id = key;
+              console.log('data reformated');
+              
+            })
+          } else {
+            console.log('No data available');
+            setData([]);
+          }
+        })
+        .catch((err) => {
+          console.log('Error fetching data:', err);
+          setData([]); 
+        });
+    }, []);
       
       function groupByDay(events){
         let grouped = {}
