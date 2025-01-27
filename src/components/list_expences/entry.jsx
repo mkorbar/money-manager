@@ -20,7 +20,6 @@ function Entry({expenseData}) {
                     </div>
                     <div className="col-1"><button onClick={() => {deleteExpense(expenseData.id)}}>Delete</button></div>
             </div>
-        
         </li>
     )
 }
